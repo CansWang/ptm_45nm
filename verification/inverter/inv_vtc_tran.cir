@@ -1,0 +1,36 @@
+* PTM 45nm HP/LP CMOS inverter: DC transfer curve and propagation delay
+* Adapted from the inverter example in the accompanying model-lineage document.
+* Run with python3 verification/run.py inverter from the repository root.
+* The runner creates model.inc and runs in results/hp/ or results/lp/.
+.include "model.inc"
+.csparam supply={vdd}
+.csparam half_supply={vdd/2}
+.temp 27
+
+Vdd vdd 0 {vdd}
+Vin in 0 PULSE(0 {vdd} 100p 20p 20p 480p 1n)
+Mp out in vdd vdd pmos W=180n L=45n
+Mn out in 0 0 nmos W=90n L=45n
+Cl out 0 1f
+
+.control
+  set noaskquit
+  set numdgt=12
+  set wr_singlescale
+  set wr_vecnames
+  dc Vin 0 $&supply 0.005
+  * Read endpoint samples directly; decimal VDD can round beyond a DC sweep's end.
+  let voh = v(out)[0]
+  let vol = v(out)[length(v(out))-1]
+  print voh vol
+  let crossing = v(out) - v(in)
+  meas dc vm WHEN crossing=0 FALL=1
+  wrdata vtc.dat v(in) v(out)
+
+  tran 1p 2n 0 1p
+  meas tran tphl TRIG v(in) VAL=$&half_supply RISE=1 TARG v(out) VAL=$&half_supply FALL=1
+  meas tran tplh TRIG v(in) VAL=$&half_supply FALL=1 TARG v(out) VAL=$&half_supply RISE=1
+  wrdata tran.dat v(in) v(out)
+  quit
+.endc
+.end

@@ -1,0 +1,8 @@
+# Generated simulation data, diagnostics, validation reports, and PNG plots.
+/verification/**/results/
+/results/
+bsim4.out
+
+# Python bytecode.
+__pycache__/
+*.py[cod]

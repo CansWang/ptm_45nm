@@ -1,0 +1,45 @@
+* PTM 45nm HP/LP 11-stage ring oscillator
+* Adapted from the ring oscillator in the accompanying model-lineage document.
+* Run with python3 verification/run.py ring_oscillator from the repository root.
+* The runner creates model.inc and runs in results/hp/ or results/lp/.
+.include "model.inc"
+.csparam half_supply={vdd/2}
+.temp 27
+
+.subckt inv in out vdd
+Mp out in vdd vdd pmos W=180n L=45n
+Mn out in 0 0 nmos W=90n L=45n
+.ends inv
+
+Vdd vdd 0 {vdd}
+X1 n1 n2 vdd inv
+X2 n2 n3 vdd inv
+X3 n3 n4 vdd inv
+X4 n4 n5 vdd inv
+X5 n5 n6 vdd inv
+X6 n6 n7 vdd inv
+X7 n7 n8 vdd inv
+X8 n8 n9 vdd inv
+X9 n9 n10 vdd inv
+X10 n10 n11 vdd inv
+X11 n11 n1 vdd inv
+
+* Break the symmetric startup state, as in the document's example.
+.ic v(n1)=0
+.tran 1p 10n 0 1p uic
+
+.control
+  set noaskquit
+  set numdgt=12
+  set wr_singlescale
+  set wr_vecnames
+  run
+  * Measure a full period after the first 1 ns of startup.
+  meas tran tper TRIG v(n1) VAL=$&half_supply TD=1n RISE=1 TARG v(n1) VAL=$&half_supply TD=1n RISE=2
+  let frequency = 1/tper
+  let tpd = tper/(2*11)
+  print frequency tpd
+  wrdata tran.dat v(n1) v(n2)
+  quit
+.endc
+.end
