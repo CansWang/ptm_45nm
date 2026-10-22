@@ -1,3 +1,6 @@
+# Upstream reference checkout.
+/AnalogCoderPro/
+
 # Generated simulation data, diagnostics, validation reports, and PNG plots.
 /verification/**/results/
 /results/

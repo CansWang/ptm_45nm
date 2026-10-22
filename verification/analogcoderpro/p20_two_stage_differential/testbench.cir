@@ -1,0 +1,25 @@
+* AnalogCoderPro task 20: two_stage_differential
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p20/p20.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vinp vinp 0 DC {bin*vdd} AC 0.5 SIN({bin*vdd} 5u 1Meg)
+vinn vinn 0 DC {bin*vdd} AC 0.5 180 SIN({bin*vdd} -5u 1Meg)
+cexternal vout 0 1f
+m1 voutp vinp stail stail nmos W={wn50} L={ln50}
+m2 outn vinn stail stail nmos W={wn50} L={ln50}
+m3 stail vbias1 0 0 nmos W={wn50} L={ln50}
+m4 voutp vbias2 vdd vdd pmos W={wp100} L={lp100}
+m5 outn vbias2 vdd vdd pmos W={wp100} L={lp100}
+m6 vout voutp 0 0 nmos W={wn100} L={ln100}
+m7 vout vbias3 vdd vdd pmos W={wp100} L={lp100}
+m8 nbias vbias3 vdd vdd pmos W={wp100} L={lp100}
+rb nbias 0 {r10000}
+vb1 vbias1 0 {b1*vdd}
+vb2 vbias2 0 {b2*vdd}
+vb3 vbias3 0 {b3*vdd}
+.include "analysis.inc"
+.end

@@ -1,0 +1,56 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "wn10": 2.7501670985565925e-07,
+      "ln10": 4.4999999999999946e-08,
+      "wp10": 3.6901009526458114e-07,
+      "lp10": 4.4999999999999946e-08
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "816a90f38a152cefbb5fa841d960c97da6d9aba754374cc1a0a3ce42cd48dc09",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "wn10": 2.4989161932661677e-07,
+      "ln10": 4.4999999999999946e-08,
+      "wp10": 3.454966982797478e-07,
+      "lp10": 4.4999999999999946e-08
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "816a90f38a152cefbb5fa841d960c97da6d9aba754374cc1a0a3ce42cd48dc09",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "wn10": 2.4989161932661677e-07,
+      "ln10": 4.4999999999999946e-08,
+      "wp10": 3.454966982797478e-07,
+      "lp10": 4.4999999999999946e-08
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "816a90f38a152cefbb5fa841d960c97da6d9aba754374cc1a0a3ce42cd48dc09",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "b1": 0.3739709351610932,
+      "r1000": 1465781.345605523,
+      "wn100": 6.511828129854124e-07,
+      "ln100": 2.8202284517617865e-07,
+      "wn50": 7.849813505978138e-07,
+      "ln50": 3.9923629766126484e-07,
+      "brf": 0.42850078600951846,
+      "blo": 0.4591432795148535,
+      "rfilter": 8870240.002223724,
+      "cfilter": 4.5615889175744715e-15
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "abb6cb39846121aaf6808c00ae1f225171b57dcefda4aeb99c847b6b31c57837",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "b1": 0.37971133911784155,
+      "r1000": 1201351.673237664,
+      "wn100": 3.051989692635337e-06,
+      "ln100": 5.7877885603121985e-08,
+      "wn50": 3.307686176052937e-06,
+      "ln50": 8.192478652552047e-08,
+      "brf": 0.5292800468292794,
+      "blo": 0.8024544388890457,
+      "rfilter": 5437271.677492967,
+      "cfilter": 1.3602629328434081e-15
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "abb6cb39846121aaf6808c00ae1f225171b57dcefda4aeb99c847b6b31c57837",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "b1": 0.7918334273313176,
+      "r1000": 1465332.8742868158,
+      "wn100": 5.150251239095689e-07,
+      "ln100": 5.023698620143551e-08,
+      "wn50": 2.002645075705607e-06,
+      "ln50": 1.9372511269953087e-07,
+      "brf": 0.5251872662524932,
+      "blo": 0.6525655011060169,
+      "rfilter": 1110280.1285852357,
+      "cfilter": 5.092097375053279e-15
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "abb6cb39846121aaf6808c00ae1f225171b57dcefda4aeb99c847b6b31c57837",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

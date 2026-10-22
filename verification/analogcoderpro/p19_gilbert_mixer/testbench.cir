@@ -1,0 +1,28 @@
+* AnalogCoderPro task 19: gilbert_mixer
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p19/p19.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vrfp vrfp 0 DC {brf*vdd} SIN({brf*vdd} 12.5m 100Meg)
+vrfn vrfn 0 DC {brf*vdd} SIN({brf*vdd} -12.5m 100Meg)
+vlop vlop 0 DC {blo*vdd} SIN({blo*vdd} 50m 120Meg)
+vlon vlon 0 DC {blo*vdd} SIN({blo*vdd} -50m 120Meg)
+rl1 vdd voutp {r1000}
+rl2 vdd voutn {r1000}
+m7 sourcenode vbias 0 0 nmos W={wn100} L={ln100}
+m1 rfp_out vrfp sourcenode 0 nmos W={wn50} L={ln50}
+m2 rfn_out vrfn sourcenode 0 nmos W={wn50} L={ln50}
+m3 voutp vlop rfp_out 0 nmos W={wn50} L={ln50}
+m4 voutp vlon rfn_out 0 nmos W={wn50} L={ln50}
+m5 voutn vlon rfp_out 0 nmos W={wn50} L={ln50}
+m6 voutn vlop rfn_out 0 nmos W={wn50} L={ln50}
+vbias vbias 0 {b1*vdd}
+rfp voutp vdd {rfilter}
+rfn voutn vdd {rfilter}
+cfp voutp vdd {cfilter}
+cfn voutn vdd {cfilter}
+.include "analysis.inc"
+.end

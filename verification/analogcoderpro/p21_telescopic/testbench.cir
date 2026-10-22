@@ -1,0 +1,26 @@
+* AnalogCoderPro task 21: telescopic
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p21/p21.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vinp vinp 0 DC {bin*vdd} AC 0.5 SIN({bin*vdd} 5u 1Meg)
+vinn vinn 0 DC {bin*vdd} AC 0.5 180 SIN({bin*vdd} -5u 1Meg)
+cexternal vout 0 1f
+m9 s_tail vbias1 0 0 nmos W={wn30} L={ln30}
+m1 n1 vinp s_tail s_tail nmos W={wn50} L={ln50}
+m2 n2 vinn s_tail s_tail nmos W={wn50} L={ln50}
+m3 voutp vbias2 n1 n1 nmos W={wn50} L={ln50}
+m4 vout vbias2 n2 n2 nmos W={wn50} L={ln50}
+m5 voutp vbias3 s5 s5 pmos W={wp70} L={lp70}
+m6 vout vbias3 s6 s6 pmos W={wp70} L={lp70}
+m7 s5 vbias4 vdd vdd pmos W={wp70} L={lp70}
+m8 s6 vbias4 vdd vdd pmos W={wp70} L={lp70}
+vbias1 vbias1 0 {b1*vdd}
+vbias2 vbias2 0 {b2*vdd}
+vbias3 vbias3 0 {b3*vdd}
+vbias4 vbias4 0 {b4*vdd}
+.include "analysis.inc"
+.end

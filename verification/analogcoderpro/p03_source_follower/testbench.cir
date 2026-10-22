@@ -1,0 +1,14 @@
+* AnalogCoderPro task 3: source_follower
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p3/p3.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vin vin 0 DC {bin*vdd} AC 1 SIN({bin*vdd} 10u 1Meg)
+cexternal vout 0 1f
+rload vout 0 {r10000}
+m1 vdd vin vout vout nmos W={wn50} L={ln50}
+.include "analysis.inc"
+.end

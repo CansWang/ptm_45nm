@@ -1,0 +1,62 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "b1": 0.2642473846981607,
+      "wn50": 1.7844325746618246e-07,
+      "ln50": 8.143979917067444e-08,
+      "wp100": 1.4332425372017935e-07,
+      "lp100": 2.1180373930506412e-07,
+      "bin": 0.7645863162085659
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "f74b6e88b5be8c872784fd823a3d113e4e44bd5efcb59f232ddb8a4be8fc1018",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "b1": 0.3469301128704129,
+      "wn50": 1.0494339604359457e-07,
+      "ln50": 4.640350635048723e-08,
+      "wp100": 1.1251081251387816e-07,
+      "lp100": 1.3129473593445885e-07,
+      "bin": 0.8564842302197385
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "f74b6e88b5be8c872784fd823a3d113e4e44bd5efcb59f232ddb8a4be8fc1018",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "b1": 0.5533797854202613,
+      "wn50": 2.138894911562656e-07,
+      "ln50": 1.1320886926347907e-07,
+      "wp100": 9.386632900002437e-08,
+      "lp100": 1.1237266243241477e-07,
+      "bin": 0.4040088519559511
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "f74b6e88b5be8c872784fd823a3d113e4e44bd5efcb59f232ddb8a4be8fc1018",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

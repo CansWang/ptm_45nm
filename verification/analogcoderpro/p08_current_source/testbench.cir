@@ -1,0 +1,14 @@
+* AnalogCoderPro task 8: current_source
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p8/p8.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vforce vout 0 {0.7*vdd}
+m1 vout vbias 0 0 nmos W={wn10} L={ln10}
+rrload vout vdd {r10000}
+vbias vbias 0 {b1*vdd}
+.include "analysis.inc"
+.end

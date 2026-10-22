@@ -13,21 +13,21 @@ were verified on **both models** with **ngspice 45.2** at **27 °C**.
 
 ## Run the examples
 
-Requires `ngspice` on your PATH, Python 3, and Matplotlib. If Matplotlib is
-missing, install it with `python3 -m pip install -r verification/requirements.txt`.
+Requires `ngspice` on your PATH and Python 3 with Matplotlib, NumPy, and SciPy.
+Install Python dependencies with `python3 -m pip install -r verification/requirements.txt`.
 From the repository root:
 
 ```sh
-python3 verification/run.py                            # Both circuits on HP and LP
-python3 verification/run.py --model lp                 # Both circuits on LP only
+python3 verification/run.py                            # All 18 circuits, nominal supplies
+python3 verification/run.py --model lp                 # All circuits on LP only
 python3 verification/run.py inverter --model hp        # HP inverter only
 python3 verification/run.py ring_oscillator --model lp # LP ring oscillator only
 ```
 
 The runner creates the output directories, simulates without a GUI, checks the
 exported waveforms, and saves PNG plots. It exits with a nonzero status on
-simulation or verification failure. The default command runs all four
-circuit/model combinations. Each run replaces only the selected combination's
+simulation or verification failure. The default command verifies all 18 circuits
+on both models at nominal supplies. Each run replaces only the selected combination's
 generated outputs and regenerates `validation.txt`.
 
 All SPICE testbenches are organized under `verification/`:
@@ -124,3 +124,137 @@ or measurement errors.
 
 These are predictive transistor models, without process-corner or mismatch
 libraries. HP and LP results above use each model's nominal supply.
+
+## AnalogCoderPro performance benchmarks
+
+The suite ports all 16 transistor-level samples (tasks **1–8 and 14–21**) from
+[AnalogCoderPro](https://github.com/laiyao1/AnalogCoderPro/tree/05542af46020e5c37d5a7e3ca79da9f24626e1c9).
+The local SSH clone at `AnalogCoderPro/` is pinned to that revision and ignored
+by Git. The adapted SPICE circuits run independently of the clone and PySpice;
+each testbench and the tracked catalog record the source path and revision.
+
+The recorded reference run completed **24,576 candidate evaluations** and
+**48/48 cases passed** full verification. Replaying the selected designs also
+passed all 48 cases and regenerated **123 response PNGs plus two comparison PNGs**.
+
+```sh
+# Replay the selected designs and regenerate all 48 verification reports.
+python3 verification/run.py analogcoderpro --supply both
+
+# One task / model / supply condition.
+python3 verification/run.py acp_p19 --model lp --supply common
+
+# Repeat the independent sizing and bias search (longer-running).
+python3 verification/run.py analogcoderpro --model all --supply both \
+  --optimize --trials 512 --seed 42
+
+# Explicitly replace tracked replay inputs with the verified new selections.
+python3 verification/analogcoderpro/select_parameters.py
+```
+
+Normal verification uses the checked-in `parameters.json` files and performs
+fresh simulations. Optimization writes ignored `best.json` and trial histories;
+it does not automatically change tracked selections. `select_parameters.py`
+checks the complete verified matrix before updating those inputs.
+
+Each circuit has its own source directory under `verification/analogcoderpro/`:
+
+```text
+p01_common_source/             # Same layout for the other 15 tasks
+  testbench.cir
+  parameters.json              # Selected designs: tracked, reproducible inputs
+  results/                     # All generated files below are Git-ignored
+    hp/nominal/
+    lp/nominal/
+    lp/common_1v/
+results/                       # Ignored aggregate reports and comparison PNGs
+```
+
+The nominal comparison uses HP at **1.0 V** and LP at **1.1 V**. The common-supply
+comparison uses **1.0 V for both**, reusing the HP result. These are 48 unique
+cases. Each case gets an independent search with identical parameter bounds;
+the reported designs can have different dimensions and DC biases. External
+loads, signal amplitudes, and frequencies stay fixed between models.
+
+| Task selectors | Circuit examples |
+| --- | --- |
+| `acp_p01`–`acp_p05` | Common-source, three-stage, source-follower, common-gate, cascode amplifiers |
+| `acp_p06`, `acp_p07` | Resistive-load and CMOS inverters |
+| `acp_p08`, `acp_p17` | Current source and cascode current mirror |
+| `acp_p14`, `acp_p15` | Miller-compensated and diode-load amplifiers |
+| `acp_p16`, `acp_p18`, `acp_p20`, `acp_p21` | Active-load, resistive-load, two-stage, and telescopic differential amplifiers |
+| `acp_p19` | Gilbert mixer |
+
+Connectivity and equal-device groups follow the samples, including task 2's
+actual stage connections. `GND` is normalized to SPICE ground. Original 5 V
+supplies and level-1 models are replaced by the selected PTM card and supply.
+Starting widths preserve the original W/L ratios at L=45 nm; the dimensionless
+task-6 transistor gets an explicit initial W=450 nm. Internal capacitors and
+mixer stimuli are retargeted for the PTM experiment. These are adaptations,
+not reproductions of the upstream 5 V results.
+
+The search uses seeded differential evolution with a hard 512-evaluation cap,
+four isolated ngspice workers, and no polishing search. If the population
+converges early, a separately seeded Sobol sequence completes the budget.
+Widths span **90 nm–20 µm**, lengths **45–450 nm**, resistors **100 Ω–10 MΩ**,
+internal capacitors **1 fF–10 pF**, and DC bias fractions **0.02–0.98 VDD**.
+Paired devices retain shared parameters. Amplifiers and inverters have a fixed
+**1 fF** external load.
+Stored parameters use SI units (metres, ohms, farads); bias parameters are
+fractions of VDD. The catalog identifies each parameter's kind and bounds.
+
+| Family | Efficiency objective and verification floors |
+| --- | --- |
+| Amplifier | Maximize `A0 × f3dB / P`; gain ≥2 V/V (≥0.5 for follower), bandwidth ≥1 MHz, conducting devices, and valid output headroom. Differential examples also require CMRR ≥20 dB. |
+| Inverter | Minimize `energy per transition × mean delay`; both rails within 5%, settled inversion, and positive delays below 250 ps with a 1 ns input period. |
+| Current source / mirror | Maximize `1/[P × (tracking error + regulation + 0.001)]`; target 10 µA within 10%, current variation ≤20% over 0.5–0.9 VDD output voltage. |
+| Mixer | Maximize differential down-conversion gain per watt; gain ≥0 dB and both mixing products ≥1 µV peak. LO inputs must remain within the rails. |
+
+Amplifier AC sweeps cover 1 kHz–100 GHz. A response without a −3 dB crossing is
+reported as a **bandwidth lower bound**, with the sweep limit used conservatively
+in its objective. Differential AC input is 1 V and common-mode AC input is 0.5 V,
+with gain normalization applied. Full verification compares the 1 MHz small-signal
+transient gain against AC (within 10%) and also saves a DC transfer sweep.
+The reported output swing is the full DC transfer range.
+
+Inverter supply energy is average second-cycle VDD power divided by two
+transitions per 1 ns period; timing thresholds are 50% of the selected supply.
+Current-source compliance tests force the output voltage while retaining the
+sample's load resistor as a fixture. Their power metric is `VDD × Iout`, plus
+`VDD × 10 µA` for the mirror reference, so the forcing source cannot make a
+current source appear to consume zero power.
+Output resistance is the reciprocal fitted current-versus-voltage slope over
+the 0.5–0.9 VDD regulation interval.
+
+Mixer RF/LO frequencies are **100/120 MHz**, with **50/200 mV peak-to-peak
+differential** inputs. Full verification runs 1.2 µs, uniformly resamples the
+last 1 µs at 50 ps, and uses a Hann-window FFT to measure the **20/220 MHz**
+products and RF/LO feedthrough. Search trials use a shorter coherent window;
+the selected candidate is independently rerun with the full verification.
+
+Each result directory contains a runnable `best.cir`, generated model/parameter/
+analysis includes, the simulator log, raw data, `metrics.json`, `validation.txt`,
+and applicable DC, AC, transient, or FFT PNGs. Optimization also saves all trial
+parameters, metrics, constraint violations, and errors in `optimization.jsonl`.
+The model and testbench hashes, ngspice version, revision, seed, and trial count
+are recorded with the results.
+
+Open the generated [comparison report](verification/analogcoderpro/results/comparison.md),
+[CSV measurements and parameters](verification/analogcoderpro/results/comparison.csv),
+[nominal-supply plot](verification/analogcoderpro/results/nominal.png), or
+[common-1.0-V plot](verification/analogcoderpro/results/common_1v.png).
+FoMs have different definitions between families and are compared within each
+task only. A measured design that misses a floor is **LIMITED**, with the
+violations recorded. **FAIL** denotes simulation or verification errors and
+makes the runner exit nonzero. A LIMITED design is not a PASS; its efficiency
+ratio is excluded from the aggregate performance chart.
+
+To restore the optional upstream checkout for source inspection/imports:
+
+```sh
+git clone git@github.com:laiyao1/AnalogCoderPro.git AnalogCoderPro
+git -C AnalogCoderPro checkout --detach 05542af46020e5c37d5a7e3ca79da9f24626e1c9
+```
+
+Results describe the best designs found within the search budget, not global
+optima or foundry-characterized performance.

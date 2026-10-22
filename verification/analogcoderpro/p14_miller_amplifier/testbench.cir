@@ -1,0 +1,18 @@
+* AnalogCoderPro task 14: miller_amplifier
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p14/p14.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vin vin 0 DC {bin*vdd} AC 1 SIN({bin*vdd} 10u 1Meg)
+cexternal vout 0 1f
+m1 vmid vin 0 0 nmos W={wn10} L={ln10}
+m2 vmid vbias vdd vdd pmos W={wp20} L={lp20}
+m3 vout vmid 0 0 nmos W={wn10} L={ln10}
+rload vout vdd {r10000}
+cmiller vmid vout {cc}
+vbias vbias 0 {b1*vdd}
+.include "analysis.inc"
+.end

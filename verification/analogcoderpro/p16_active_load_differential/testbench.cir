@@ -1,0 +1,19 @@
+* AnalogCoderPro task 16: active_load_differential
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p16/p16.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vinp vinp 0 DC {bin*vdd} AC 0.5 SIN({bin*vdd} 5u 1Meg)
+vinn vinn 0 DC {bin*vdd} AC 0.5 180 SIN({bin*vdd} -5u 1Meg)
+cexternal vout 0 1f
+mtail stail vbias 0 0 nmos W={wn50} L={ln50}
+m1 voutp vinp stail stail nmos W={wn50} L={ln50}
+m2 vout vinn stail stail nmos W={wn50} L={ln50}
+m3 voutp voutp vdd vdd pmos W={wp100} L={lp100}
+m4 vout voutp vdd vdd pmos W={wp100} L={lp100}
+vbias vbias 0 {b1*vdd}
+.include "analysis.inc"
+.end

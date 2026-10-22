@@ -1,0 +1,59 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "b1": 0.3354293998273216,
+      "wn50": 1.112925315639169e-07,
+      "ln50": 5.040903892468625e-08,
+      "r10000": 1335481.703485914,
+      "bin": 0.0971964507757855
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "e19ea1c6a7f883931f16ff66c1bda44e623d086a6fc93fc97e169fb5a2b3ab9b",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "b1": 0.5485824720324921,
+      "wn50": 1.8887348230035672e-07,
+      "ln50": 1.0599913829836552e-07,
+      "r10000": 9528665.057714334,
+      "bin": 0.08212391492557394
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "e19ea1c6a7f883931f16ff66c1bda44e623d086a6fc93fc97e169fb5a2b3ab9b",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "b1": 0.7131980234079937,
+      "wn50": 9.184853750595098e-08,
+      "ln50": 3.542379406156587e-07,
+      "r10000": 7272617.085733089,
+      "bin": 0.10232702434034202
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "e19ea1c6a7f883931f16ff66c1bda44e623d086a6fc93fc97e169fb5a2b3ab9b",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

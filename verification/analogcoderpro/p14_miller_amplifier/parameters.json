@@ -1,0 +1,68 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "b1": 0.7311554495139526,
+      "wn10": 3.080117999760826e-07,
+      "ln10": 8.594634852753856e-08,
+      "wp20": 4.415647256245638e-07,
+      "lp20": 5.004360306006892e-08,
+      "r10000": 5415412.480532616,
+      "cc": 1.545577770391949e-15,
+      "bin": 0.30392615690861524
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "99c982a856d51c5f645d8b6b50180785fa89b5403b0440a3324dce6b6a554536",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "b1": 0.2137907299948687,
+      "wn10": 5.755405926550184e-06,
+      "ln10": 1.2818627557645772e-07,
+      "wp20": 7.459795923001888e-06,
+      "lp20": 8.664195910338707e-08,
+      "r10000": 2280.3138124921934,
+      "cc": 1.396475459662377e-14,
+      "bin": 0.7411038218604746
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "99c982a856d51c5f645d8b6b50180785fa89b5403b0440a3324dce6b6a554536",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "b1": 0.20266972584110723,
+      "wn10": 1.6542214406021314e-06,
+      "ln10": 4.8980725276658585e-08,
+      "wp20": 1.244818161997426e-06,
+      "lp20": 8.023520962689195e-08,
+      "r10000": 78493.37287697163,
+      "cc": 7.708403561706248e-15,
+      "bin": 0.6579192228572478
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "99c982a856d51c5f645d8b6b50180785fa89b5403b0440a3324dce6b6a554536",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

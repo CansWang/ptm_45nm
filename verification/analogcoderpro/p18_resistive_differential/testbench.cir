@@ -1,0 +1,19 @@
+* AnalogCoderPro task 18: resistive_differential
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p18/p18.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vinp vinp 0 DC {bin*vdd} AC 0.5 SIN({bin*vdd} 5u 1Meg)
+vinn vinn 0 DC {bin*vdd} AC 0.5 180 SIN({bin*vdd} -5u 1Meg)
+cexternal vout 0 1f
+m1 vout vinp sourcediff sourcediff nmos W={wn50} L={ln50}
+m2 drain2 vinn sourcediff sourcediff nmos W={wn50} L={ln50}
+mtail sourcediff vbias 0 0 nmos W={wn20} L={ln20}
+r1 vdd vout {r10000}
+r2 vdd drain2 {r10000}
+vbias vbias 0 {b1*vdd}
+.include "analysis.inc"
+.end

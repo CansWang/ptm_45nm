@@ -1,0 +1,19 @@
+* AnalogCoderPro task 2: three_stage
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p2/p2.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vin vin 0 DC {bin*vdd} AC 1 SIN({bin*vdd} 10u 1Meg)
+cexternal vout 0 1f
+m1 drain1 vin 0 0 nmos W={wn50} L={ln50}
+rr1 drain1 vdd {r10000}
+m2 drain2 bias_m2 drain1 0 nmos W={wn50} L={ln50}
+rr2 drain2 vdd {r10000}
+m3 vout drain2 0 0 nmos W={wn50} L={ln50}
+rr3 vout vdd {r10000}
+vbias_m2_gate bias_m2 drain1 {b1*vdd}
+.include "analysis.inc"
+.end

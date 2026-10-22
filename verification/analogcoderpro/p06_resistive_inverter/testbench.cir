@@ -1,0 +1,14 @@
+* AnalogCoderPro task 6: resistive_inverter
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p6/p6.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vin vin 0 PULSE(0 {vdd} 100p 20p 20p 480p 1n)
+cexternal vout 0 1f
+rload vdd vout {r100000}
+m1 vout vin 0 0 nmos W={wn10} L={ln10}
+.include "analysis.inc"
+.end

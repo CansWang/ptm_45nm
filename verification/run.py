@@ -14,6 +14,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from analogcoderpro import benchmark as acp
 
 
 ROOT = Path(__file__).resolve().parent
@@ -188,12 +189,16 @@ def plot_ring(results, values, tran, model, supply):
     save_plot(figure, results / "tran.png")
 
 
-def run_bench(name, model, executable, version):
+def run_bench(name, model, executable, version, supply_override=None, condition="nominal"):
     bench = ROOT / name
     model_filename, supply = MODELS[model]
+    if supply_override is not None:
+        supply = supply_override
     model_path = ROOT.parent / model_filename
     check(model_path.is_file(), f"Missing model card: {model_path}")
     results = bench / "results" / model
+    if condition != "nominal":
+        results = results / condition
     results.mkdir(parents=True, exist_ok=True)
     # Remove known generated files so a failed run cannot pass using stale data.
     for filename in (f"{name}.log", "vtc.dat", "tran.dat", "vtc.png", "tran.png",
@@ -237,18 +242,28 @@ def run_bench(name, model, executable, version):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("example", nargs="?", choices=("all", *BENCHES), default="all")
+    parser.add_argument("example", nargs="?", choices=("all", *BENCHES, "analogcoderpro", *acp.CIRCUITS), default="all")
     parser.add_argument("--model", choices=("all", *MODELS), default="all",
                         help="Device family to simulate (default: all)")
+    parser.add_argument("--supply", choices=("nominal", "common", "both"), default="nominal",
+                        help="Nominal supplies, common 1.0 V, or both; shared HP case runs once")
+    parser.add_argument("--optimize", action="store_true", help="Optimize the selected AnalogCoderPro cases")
+    parser.add_argument("--trials", type=int, default=512, help="Maximum candidate evaluations per optimized case")
+    parser.add_argument("--seed", type=int, default=42, help="Repeatable optimizer seed")
     args = parser.parse_args()
     executable = shutil.which("ngspice")
     check(executable is not None, "ngspice must be installed and on PATH")
     version_output = subprocess.run([executable, "--version"], check=True,
                                     capture_output=True, text=True).stdout
     version = next(line.strip("* ") for line in version_output.splitlines() if "ngspice-" in line)
-    for name in BENCHES if args.example == "all" else (args.example,):
-        for model in MODELS if args.model == "all" else (args.model,):
-            run_bench(name, model, executable, version)
+    if args.example == "all" or args.example in BENCHES:
+        for name in BENCHES if args.example == "all" else (args.example,):
+            for model, condition, supply in acp.cases(args.model, args.supply):
+                run_bench(name, model, executable, version, supply, condition)
+    if args.example in ("all", "analogcoderpro") or args.example in acp.CIRCUITS:
+        selected = list(acp.CIRCUITS.values()) if args.example in ("all", "analogcoderpro") else [acp.CIRCUITS[args.example]]
+        if not acp.run(selected, args.model, args.supply, args.optimize, args.trials, args.seed):
+            sys.exit(1)
 
 
 if __name__ == "__main__":

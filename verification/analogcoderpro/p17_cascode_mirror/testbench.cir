@@ -1,0 +1,17 @@
+* AnalogCoderPro task 17: cascode_mirror
+* Upstream 05542af46020e5c37d5a7e3ca79da9f24626e1c9 / sample_design/p17/p17.py
+* Native SPICE port; run using verification/run.py.
+* Connectivity preserved; GND normalized to 0; sizing/bias supplied per case.
+.include "model.inc"
+.include "parameters.inc"
+.temp 27
+Vdd vdd 0 {vdd}
+vforce iout 0 {0.7*vdd}
+iref vdd iref 10u
+m1 n1 n1 0 0 nmos W={wn20} L={ln20}
+m2 iref iref n1 n1 nmos W={wn20} L={ln20}
+m3 n3 n1 0 0 nmos W={wn20} L={ln20}
+m4 iout iref n3 n3 nmos W={wn20} L={ln20}
+r1 iout vdd {r10000}
+.include "analysis.inc"
+.end

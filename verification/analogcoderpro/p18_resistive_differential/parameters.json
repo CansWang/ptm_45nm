@@ -1,0 +1,65 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "b1": 0.21895717947823712,
+      "wn50": 9.886255129157589e-08,
+      "ln50": 6.345617091456559e-08,
+      "wn20": 1.0335366894651704e-05,
+      "ln20": 2.0149633513001478e-07,
+      "r10000": 4059791.632318013,
+      "bin": 0.5928692519299305
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "393b9f3edd1a65d7fa1da22d5edf0ad60727d0cba60ce21c600e603e7e787029",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "b1": 0.5242946007847786,
+      "wn50": 1.8526085751059217e-07,
+      "ln50": 5.333592868748054e-08,
+      "wn20": 1.3220396945386866e-07,
+      "ln20": 4.027173610206202e-07,
+      "r10000": 5274603.416898401,
+      "bin": 0.6145070561633039
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "393b9f3edd1a65d7fa1da22d5edf0ad60727d0cba60ce21c600e603e7e787029",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "b1": 0.4679357589563125,
+      "wn50": 1.5237516522535772e-07,
+      "ln50": 3.1204470236108786e-07,
+      "wn20": 5.154680175251054e-07,
+      "ln20": 1.3025664704718404e-07,
+      "r10000": 3656828.359648901,
+      "bin": 0.628280908615937
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "393b9f3edd1a65d7fa1da22d5edf0ad60727d0cba60ce21c600e603e7e787029",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

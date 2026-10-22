@@ -1,0 +1,59 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "wn50": 2.713419783929111e-07,
+      "ln50": 2.525326145672905e-07,
+      "wp50": 9.380504175307143e-08,
+      "lp50": 2.7937069164885467e-07,
+      "bin": 0.5157653219493962
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "7e52fb383d4d811c6120d8a64baecbbfed0ff156cdf4f6df17175ef26d059a04",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "wn50": 8.425747453324168e-07,
+      "ln50": 1.096122921023705e-07,
+      "wp50": 1.3199246442483578e-07,
+      "lp50": 6.855262345410604e-08,
+      "bin": 0.570162960884018
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "7e52fb383d4d811c6120d8a64baecbbfed0ff156cdf4f6df17175ef26d059a04",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "wn50": 1.1135756102924544e-05,
+      "ln50": 4.00260741546386e-07,
+      "wp50": 1.0134368145541076e-06,
+      "lp50": 6.803418961129703e-08,
+      "bin": 0.685832307534153
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "7e52fb383d4d811c6120d8a64baecbbfed0ff156cdf4f6df17175ef26d059a04",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

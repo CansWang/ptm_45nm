@@ -1,0 +1,59 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "b1": 0.5168332982175868,
+      "wn50": 1.6206028354294946e-06,
+      "ln50": 3.5920444817050363e-07,
+      "r10000": 97534.69497472393,
+      "bin": 0.5383163610097893
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "5184d269e9103441882737f41c56724debae6fa0ec194a29633ed1faf7c1ab03",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "b1": 0.5541258877378694,
+      "wn50": 8.35146002507112e-06,
+      "ln50": 3.529393302782104e-07,
+      "r10000": 1973558.3769332275,
+      "bin": 0.4253027973649451
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "5184d269e9103441882737f41c56724debae6fa0ec194a29633ed1faf7c1ab03",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "b1": 0.5861428128084324,
+      "wn50": 9.112543293521498e-06,
+      "ln50": 4.5423936400512875e-08,
+      "r10000": 491569.10391219344,
+      "bin": 0.412000855924827
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "5184d269e9103441882737f41c56724debae6fa0ec194a29633ed1faf7c1ab03",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

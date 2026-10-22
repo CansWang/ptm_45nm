@@ -1,0 +1,1526 @@
+{
+  "upstream": "git@github.com:laiyao1/AnalogCoderPro.git",
+  "revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+  "circuits": [
+    {
+      "id": "acp_p01",
+      "task": 1,
+      "label": "common_source",
+      "family": "amplifier",
+      "directory": "p01_common_source",
+      "source": "sample_design/p1/p1.py",
+      "source_sha256": "691d33f56e6955e922bb31e0738839ab5b077cdbedf7299f4454fbf5d4686969",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vout",
+            "vin",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        }
+      ],
+      "parameters": {
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.55
+        }
+      }
+    },
+    {
+      "id": "acp_p02",
+      "task": 2,
+      "label": "three_stage",
+      "family": "amplifier",
+      "directory": "p02_three_stage",
+      "source": "sample_design/p2/p2.py",
+      "source_sha256": "9e548a287fd34a4ee8914888945557595c828442b8eb5889b8bf3894b0c5061a",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "bias_m2",
+        "drain1",
+        "drain2",
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "drain1",
+            "vin",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "drain2",
+            "bias_m2",
+            "drain1",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m3",
+          "pins": [
+            "vout",
+            "drain2",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.4
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.55
+        }
+      }
+    },
+    {
+      "id": "acp_p03",
+      "task": 3,
+      "label": "source_follower",
+      "family": "amplifier",
+      "directory": "p03_source_follower",
+      "source": "sample_design/p3/p3.py",
+      "source_sha256": "2422dd1dc81b86bdcb9596b37e2f5e4166cfadfa88e63ea97bdc2e1b3eb30e4d",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vdd",
+            "vin",
+            "vout",
+            "vout"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        }
+      ],
+      "parameters": {
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.75
+        }
+      }
+    },
+    {
+      "id": "acp_p04",
+      "task": 4,
+      "label": "common_gate",
+      "family": "amplifier",
+      "directory": "p04_common_gate",
+      "source": "sample_design/p4/p4.py",
+      "source_sha256": "1a57fc14fce15ce51f1c5edfd0e8e66fa4e0c6a3178e206a4062e282554e3918",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vbias",
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vout",
+            "vbias",
+            "vin",
+            "vin"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.4
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.55
+        }
+      }
+    },
+    {
+      "id": "acp_p05",
+      "task": 5,
+      "label": "cascode_amplifier",
+      "family": "amplifier",
+      "directory": "p05_cascode_amplifier",
+      "source": "sample_design/p5/p5.py",
+      "source_sha256": "192ab5f5fa40f5a095742c6f859c190589e79942cbdab95429d5fa06d1103954",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "drain_m1",
+        "vbias",
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "drain_m1",
+            "vin",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "vout",
+            "vbias",
+            "drain_m1",
+            "drain_m1"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.6
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.55
+        }
+      }
+    },
+    {
+      "id": "acp_p06",
+      "task": 6,
+      "label": "resistive_inverter",
+      "family": "inverter",
+      "directory": "p06_resistive_inverter",
+      "source": "sample_design/p6/p6.py",
+      "source_sha256": "a1e592b5e1840f75257642253490815d179a3ddba0017071363c4f13143f49c1",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vout",
+            "vin",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n10"
+        }
+      ],
+      "parameters": {
+        "r100000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 100000.0
+        },
+        "wn10": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.500000000000001e-07
+        },
+        "ln10": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        }
+      }
+    },
+    {
+      "id": "acp_p07",
+      "task": 7,
+      "label": "cmos_inverter",
+      "family": "inverter",
+      "directory": "p07_cmos_inverter",
+      "source": "sample_design/p7/p7.py",
+      "source_sha256": "07135c18fa6b8f750e1810ef98229de15dc304cc4821caaf3872fef51ae8d218",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m_n",
+          "pins": [
+            "vout",
+            "vin",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n10"
+        },
+        {
+          "name": "m_p",
+          "pins": [
+            "vout",
+            "vin",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p10"
+        }
+      ],
+      "parameters": {
+        "wn10": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.500000000000001e-07
+        },
+        "ln10": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wp10": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.500000000000001e-07
+        },
+        "lp10": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        }
+      }
+    },
+    {
+      "id": "acp_p08",
+      "task": 8,
+      "label": "current_source",
+      "family": "current",
+      "directory": "p08_current_source",
+      "source": "sample_design/p8/p8.py",
+      "source_sha256": "d1b9bc8817de34e71c950f2e98ce45c6d9876833dadcd47b8d24903f84579fb2",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vbias",
+        "vdd",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vout",
+            "vbias",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n10"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.2
+        },
+        "wn10": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.500000000000001e-07
+        },
+        "ln10": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0,
+          "fixed": true
+        }
+      }
+    },
+    {
+      "id": "acp_p14",
+      "task": 14,
+      "label": "miller_amplifier",
+      "family": "amplifier",
+      "directory": "p14_miller_amplifier",
+      "source": "sample_design/p14/p14.py",
+      "source_sha256": "c119a86398839552a9a8ab0de09ab7c5d0d9b11f67d0238ca45ee70396274713",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vbias",
+        "vdd",
+        "vin",
+        "vmid",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vmid",
+            "vin",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n10"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "vmid",
+            "vbias",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p20"
+        },
+        {
+          "name": "m3",
+          "pins": [
+            "vout",
+            "vmid",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n10"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.5
+        },
+        "wn10": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.500000000000001e-07
+        },
+        "ln10": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wp20": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 9.000000000000002e-07
+        },
+        "lp20": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "cc": {
+          "kind": "capacitor",
+          "low": 1e-15,
+          "high": 1e-11,
+          "initial": 1e-14
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.55
+        }
+      }
+    },
+    {
+      "id": "acp_p15",
+      "task": 15,
+      "label": "diode_load",
+      "family": "amplifier",
+      "directory": "p15_diode_load",
+      "source": "sample_design/p15/p15.py",
+      "source_sha256": "f9bd66072706e6f4414184e1bd9ca5fa90d3ea1cb42b8b78be38c3b9a80e9ad5",
+      "differential": false,
+      "output": "vout",
+      "nodes": [
+        "vdd",
+        "vin",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vout",
+            "vin",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "vout",
+            "vout",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p50"
+        }
+      ],
+      "parameters": {
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wp50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "lp50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.55
+        }
+      }
+    },
+    {
+      "id": "acp_p16",
+      "task": 16,
+      "label": "active_load_differential",
+      "family": "amplifier",
+      "directory": "p16_active_load_differential",
+      "source": "sample_design/p16/p16.py",
+      "source_sha256": "ccc7ab6af39e16de839882950a46e04406b2012fd75fbbba21488fa29e04cff0",
+      "differential": true,
+      "output": "vout",
+      "nodes": [
+        "stail",
+        "vbias",
+        "vdd",
+        "vinn",
+        "vinp",
+        "vout",
+        "voutp"
+      ],
+      "devices": [
+        {
+          "name": "mtail",
+          "pins": [
+            "stail",
+            "vbias",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m1",
+          "pins": [
+            "voutp",
+            "vinp",
+            "stail",
+            "stail"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "vout",
+            "vinn",
+            "stail",
+            "stail"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m3",
+          "pins": [
+            "voutp",
+            "voutp",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p100"
+        },
+        {
+          "name": "m4",
+          "pins": [
+            "vout",
+            "voutp",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p100"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.2
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wp100": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.5e-06
+        },
+        "lp100": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.75
+        }
+      }
+    },
+    {
+      "id": "acp_p17",
+      "task": 17,
+      "label": "cascode_mirror",
+      "family": "current",
+      "directory": "p17_cascode_mirror",
+      "source": "sample_design/p17/p17.py",
+      "source_sha256": "75d96e4f46e114537a2f8b0577a7345ec311a0135e1135b18d62283fabe97071",
+      "differential": false,
+      "output": "iout",
+      "nodes": [
+        "iout",
+        "iref",
+        "n1",
+        "n3",
+        "vdd"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "n1",
+            "n1",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n20"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "iref",
+            "iref",
+            "n1",
+            "n1"
+          ],
+          "polarity": "nmos",
+          "group": "n20"
+        },
+        {
+          "name": "m3",
+          "pins": [
+            "n3",
+            "n1",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n20"
+        },
+        {
+          "name": "m4",
+          "pins": [
+            "iout",
+            "iref",
+            "n3",
+            "n3"
+          ],
+          "polarity": "nmos",
+          "group": "n20"
+        }
+      ],
+      "parameters": {
+        "wn20": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 9.000000000000002e-07
+        },
+        "ln20": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0,
+          "fixed": true
+        }
+      }
+    },
+    {
+      "id": "acp_p18",
+      "task": 18,
+      "label": "resistive_differential",
+      "family": "amplifier",
+      "directory": "p18_resistive_differential",
+      "source": "sample_design/p18/p18.py",
+      "source_sha256": "cf1ec43e5bed68762ab130e6219986abceeb642e3dc81c3c515589a2f56579a5",
+      "differential": true,
+      "output": "vout",
+      "nodes": [
+        "drain2",
+        "sourcediff",
+        "vbias",
+        "vdd",
+        "vinn",
+        "vinp",
+        "vout"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "vout",
+            "vinp",
+            "sourcediff",
+            "sourcediff"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "drain2",
+            "vinn",
+            "sourcediff",
+            "sourcediff"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "mtail",
+          "pins": [
+            "sourcediff",
+            "vbias",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n20"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.2
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wn20": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 9.000000000000002e-07
+        },
+        "ln20": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.75
+        }
+      }
+    },
+    {
+      "id": "acp_p19",
+      "task": 19,
+      "label": "gilbert_mixer",
+      "family": "mixer",
+      "directory": "p19_gilbert_mixer",
+      "source": "sample_design/p19/p19.py",
+      "source_sha256": "753ce5e8ac54644c5fef6fb78aa70241354873dae5a9caf2177c1e6f077b0d8a",
+      "differential": false,
+      "output": "voutp",
+      "nodes": [
+        "rfn_out",
+        "rfp_out",
+        "sourcenode",
+        "vbias",
+        "vdd",
+        "vlon",
+        "vlop",
+        "voutn",
+        "voutp",
+        "vrfn",
+        "vrfp"
+      ],
+      "devices": [
+        {
+          "name": "m7",
+          "pins": [
+            "sourcenode",
+            "vbias",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n100"
+        },
+        {
+          "name": "m1",
+          "pins": [
+            "rfp_out",
+            "vrfp",
+            "sourcenode",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "rfn_out",
+            "vrfn",
+            "sourcenode",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m3",
+          "pins": [
+            "voutp",
+            "vlop",
+            "rfp_out",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m4",
+          "pins": [
+            "voutp",
+            "vlon",
+            "rfn_out",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m5",
+          "pins": [
+            "voutn",
+            "vlon",
+            "rfp_out",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m6",
+          "pins": [
+            "voutn",
+            "vlop",
+            "rfn_out",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.3
+        },
+        "r1000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 1000.0
+        },
+        "wn100": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.5e-06
+        },
+        "ln100": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "brf": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.65
+        },
+        "blo": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.85
+        },
+        "rfilter": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 1000.0
+        },
+        "cfilter": {
+          "kind": "capacitor",
+          "low": 1e-15,
+          "high": 1e-11,
+          "initial": 1e-13
+        }
+      }
+    },
+    {
+      "id": "acp_p20",
+      "task": 20,
+      "label": "two_stage_differential",
+      "family": "amplifier",
+      "directory": "p20_two_stage_differential",
+      "source": "sample_design/p20/p20.py",
+      "source_sha256": "9495a949ffe6dc4389b00e478681df168e6a5ac66bd535cdfce02cc71d16a025",
+      "differential": true,
+      "output": "vout",
+      "nodes": [
+        "nbias",
+        "outn",
+        "stail",
+        "vbias1",
+        "vbias2",
+        "vbias3",
+        "vdd",
+        "vinn",
+        "vinp",
+        "vout",
+        "voutp"
+      ],
+      "devices": [
+        {
+          "name": "m1",
+          "pins": [
+            "voutp",
+            "vinp",
+            "stail",
+            "stail"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "outn",
+            "vinn",
+            "stail",
+            "stail"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m3",
+          "pins": [
+            "stail",
+            "vbias1",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m4",
+          "pins": [
+            "voutp",
+            "vbias2",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p100"
+        },
+        {
+          "name": "m5",
+          "pins": [
+            "outn",
+            "vbias2",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p100"
+        },
+        {
+          "name": "m6",
+          "pins": [
+            "vout",
+            "voutp",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n100"
+        },
+        {
+          "name": "m7",
+          "pins": [
+            "vout",
+            "vbias3",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p100"
+        },
+        {
+          "name": "m8",
+          "pins": [
+            "nbias",
+            "vbias3",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p100"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.2
+        },
+        "b2": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.8
+        },
+        "b3": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.8
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wp100": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.5e-06
+        },
+        "lp100": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wn100": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 4.5e-06
+        },
+        "ln100": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "r10000": {
+          "kind": "resistor",
+          "low": 100,
+          "high": 10000000.0,
+          "initial": 10000.0
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.75
+        }
+      }
+    },
+    {
+      "id": "acp_p21",
+      "task": 21,
+      "label": "telescopic",
+      "family": "amplifier",
+      "directory": "p21_telescopic",
+      "source": "sample_design/p21/p21.py",
+      "source_sha256": "52020b7a0758211a4103ab24ed09b626a82160ce26f9aa0e25e54abcb521c89f",
+      "differential": true,
+      "output": "vout",
+      "nodes": [
+        "n1",
+        "n2",
+        "s5",
+        "s6",
+        "s_tail",
+        "vbias1",
+        "vbias2",
+        "vbias3",
+        "vbias4",
+        "vdd",
+        "vinn",
+        "vinp",
+        "vout",
+        "voutp"
+      ],
+      "devices": [
+        {
+          "name": "m9",
+          "pins": [
+            "s_tail",
+            "vbias1",
+            "0",
+            "0"
+          ],
+          "polarity": "nmos",
+          "group": "n30"
+        },
+        {
+          "name": "m1",
+          "pins": [
+            "n1",
+            "vinp",
+            "s_tail",
+            "s_tail"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m2",
+          "pins": [
+            "n2",
+            "vinn",
+            "s_tail",
+            "s_tail"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m3",
+          "pins": [
+            "voutp",
+            "vbias2",
+            "n1",
+            "n1"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m4",
+          "pins": [
+            "vout",
+            "vbias2",
+            "n2",
+            "n2"
+          ],
+          "polarity": "nmos",
+          "group": "n50"
+        },
+        {
+          "name": "m5",
+          "pins": [
+            "voutp",
+            "vbias3",
+            "s5",
+            "s5"
+          ],
+          "polarity": "pmos",
+          "group": "p70"
+        },
+        {
+          "name": "m6",
+          "pins": [
+            "vout",
+            "vbias3",
+            "s6",
+            "s6"
+          ],
+          "polarity": "pmos",
+          "group": "p70"
+        },
+        {
+          "name": "m7",
+          "pins": [
+            "s5",
+            "vbias4",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p70"
+        },
+        {
+          "name": "m8",
+          "pins": [
+            "s6",
+            "vbias4",
+            "vdd",
+            "vdd"
+          ],
+          "polarity": "pmos",
+          "group": "p70"
+        }
+      ],
+      "parameters": {
+        "b1": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.13999999999999999
+        },
+        "b2": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.24
+        },
+        "b3": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.8
+        },
+        "b4": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.7
+        },
+        "wn30": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 1.3500000000000002e-06
+        },
+        "ln30": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wn50": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 2.25e-06
+        },
+        "ln50": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "wp70": {
+          "kind": "width",
+          "low": 9e-08,
+          "high": 2e-05,
+          "initial": 3.15e-06
+        },
+        "lp70": {
+          "kind": "length",
+          "low": 4.5e-08,
+          "high": 4.5e-07,
+          "initial": 4.5e-08
+        },
+        "bin": {
+          "kind": "bias",
+          "low": 0.02,
+          "high": 0.98,
+          "initial": 0.75
+        }
+      }
+    }
+  ]
+}

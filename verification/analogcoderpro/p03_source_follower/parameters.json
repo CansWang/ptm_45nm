@@ -1,0 +1,56 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "r10000": 8731476.41304507,
+      "wn50": 1.0648378664566597e-05,
+      "ln50": 1.6687476186425066e-07,
+      "bin": 0.1585094246611992
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "de44427d9191c00974c8be1a8b6f6f57d4b1f88b6e890b26ac9c8c2e7852def0",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "r10000": 9174589.786812587,
+      "wn50": 9.012245418543004e-07,
+      "ln50": 1.3777013477626256e-07,
+      "bin": 0.32515796499360383
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "de44427d9191c00974c8be1a8b6f6f57d4b1f88b6e890b26ac9c8c2e7852def0",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "r10000": 7220267.393379002,
+      "wn50": 4.018743506673287e-06,
+      "ln50": 1.6656680601676773e-07,
+      "bin": 0.3327333114844902
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "de44427d9191c00974c8be1a8b6f6f57d4b1f88b6e890b26ac9c8c2e7852def0",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}

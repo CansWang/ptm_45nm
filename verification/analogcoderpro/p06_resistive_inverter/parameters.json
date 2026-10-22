@@ -1,0 +1,53 @@
+{
+  "hp/nominal": {
+    "parameters": {
+      "r100000": 43748.05715765834,
+      "wn10": 1.499254059254334e-07,
+      "ln10": 4.938916266065039e-08
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "7fe5ed4c71892b6c5f18aaf39d8561fc8fab45394a1c144ec2732ebf33b084e3",
+    "model_sha256": "3ed8c0f77d0496dac53f1ec0b58e0c6b53bb85e48ed269ce666a34d987e7ea4f",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/nominal": {
+    "parameters": {
+      "r100000": 65543.49079789642,
+      "wn10": 2.0339997144883191e-07,
+      "ln10": 4.615732141348898e-08
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.1,
+    "source_sha256": "7fe5ed4c71892b6c5f18aaf39d8561fc8fab45394a1c144ec2732ebf33b084e3",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  },
+  "lp/common_1v": {
+    "parameters": {
+      "r100000": 55414.617486859075,
+      "wn10": 2.305830905001717e-07,
+      "ln10": 4.4999999999999946e-08
+    },
+    "optimization": {
+      "trials": 512,
+      "seed": 42,
+      "algorithm": "SciPy differential evolution; bounded Sobol completion"
+    },
+    "supply_v": 1.0,
+    "source_sha256": "7fe5ed4c71892b6c5f18aaf39d8561fc8fab45394a1c144ec2732ebf33b084e3",
+    "model_sha256": "8e5385cb9844221a232adee23e73e7c4c0090b92923b606e2a8072bec9b2842a",
+    "upstream_revision": "05542af46020e5c37d5a7e3ca79da9f24626e1c9",
+    "selected_status": "PASS"
+  }
+}
